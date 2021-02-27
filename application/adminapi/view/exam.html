@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+</head>
+
+<body>
+    请选择分类:
+    <select name="" class="cate">
+        <option value="">请选择一级分类</option>
+    </select>
+    <select name="" class="cate">
+        <option value="">请选择二级分类</option>
+    </select>
+    <select name="">
+        <option value="">请选择三级分类</option>
+    </select>
+</body>
+
+</html>
+
+<scriput>
+    $(function(){
+    //发送ajax请求，查询顶级分类信息
+    getCate();
+    $(".cate").change(function(){
+    var id = $(this).find("option:selected").porp('value');
+
+    var that = this;
+    getCate(id,that);
+    })
+    function getCate(id=0,that=""){
+    $.ajax({
+    type:"post",
+    url:"/cate",
+    data:{id:id},
+    dataType:"json",
+    success:function(data){
+
+    var option = "";
+    $(data).each(function(i){
+    option += "<option value=' "+data[i].id+"'>"+e[i]
+    })
+    }
+    })
+    }
+    })
+</scriput>
